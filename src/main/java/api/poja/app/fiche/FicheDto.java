@@ -7,6 +7,10 @@ public record FicheDto(UUID id, String nomFiche, String email, String s3Key, Ins
 
   public static FicheDto from(Fiche fiche) {
     return new FicheDto(
-        fiche.getId(), fiche.getNomFiche(), fiche.getEmail(), fiche.getS3Key(), fiche.getCreatedAt());
+        fiche.getId(),
+        fiche.getNomFiche(),
+        fiche.getEmail(),
+        fiche.getS3Key(),
+        fiche.getCreatedAt());
   }
 }

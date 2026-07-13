@@ -30,7 +30,8 @@ class FicheControllerTest {
   void create_returns201() throws Exception {
     var request = new FicheCreationRequest("Fiche 1", "test@test.com", "images/photo.png");
     var dto =
-        new FicheDto(UUID.randomUUID(), "Fiche 1", "test@test.com", "images/photo.png", Instant.now());
+        new FicheDto(
+            UUID.randomUUID(), "Fiche 1", "test@test.com", "images/photo.png", Instant.now());
     when(ficheService.create(any())).thenReturn(dto);
 
     mockMvc

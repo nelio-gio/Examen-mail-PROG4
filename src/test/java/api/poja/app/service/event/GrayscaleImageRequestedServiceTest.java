@@ -26,7 +26,8 @@ class GrayscaleImageRequestedServiceTest {
     ImageIO.write(image, "png", file);
 
     when(bucketComponent.download(any())).thenReturn(file);
-    when(bucketComponent.presign(any(), any())).thenReturn(new URL("https://example.com/image.png"));
+    when(bucketComponent.presign(any(), any()))
+        .thenReturn(new URL("https://example.com/image.png"));
 
     var event =
         GrayscaleImageRequested.builder()
