@@ -1,8 +1,8 @@
 package api.poja.app.service.event;
 
 import api.poja.app.endpoint.event.model.GrayscaleImageRequested;
-import api.poja.app.file.bucket.BucketComponent;
 import api.poja.app.fiche.ImageGrayscaler;
+import api.poja.app.file.bucket.BucketComponent;
 import api.poja.app.mail.Email;
 import api.poja.app.mail.Mailer;
 import jakarta.mail.internet.InternetAddress;
@@ -47,7 +47,12 @@ public class GrayscaleImageRequestedService implements Consumer<GrayscaleImageRe
 
     mailer.accept(
         new Email(
-            recipient, List.of(), List.of(), "Image en noir et blanc", htmlBody, List.of(grayscale)));
+            recipient,
+            List.of(),
+            List.of(),
+            "Image en noir et blanc",
+            htmlBody,
+            List.of(grayscale)));
   }
 
   private String toGrayscaleKey(String originalKey) {
