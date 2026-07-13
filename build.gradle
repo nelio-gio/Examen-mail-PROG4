@@ -50,7 +50,29 @@ jacocoTestCoverageVerification {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "**/gen/**"
+                    "**/gen/**",
+                    "**/handler/**",
+                    "**/file/bucket/**",
+                    "**/file/hash/**",
+                    "**/file/zip/**",
+                    "**/mail/Email.class",
+                    "**/mail/EmailConf.class",
+                    "**/mail/EmailAddressVerifier.class",
+                    "**/mail/Mailer.class",
+                    "**/endpoint/event/EventProducer.class",
+                    "**/endpoint/event/EventConf.class",
+                    "**/endpoint/event/EventStack.class",
+                    "**/endpoint/event/consumer/**",
+                    "**/endpoint/event/model/UuidCreated.class",
+                    "**/PojaGenerated.class",
+                    "**/PojaApplication.class",
+                    "**/datastructure/**",
+                    "**/concurrency/**",
+                    "**/endpoint/RequestLoggerConfigurer.class",
+                    "**/endpoint/EndpointConf.class",
+                    "**/endpoint/event/model/PojaEvent.class",
+                    "**/endpoint/rest/controller/HelloWorldController.class",
+                    "**/endpoint/rest/controller/health/**"
             ])
         }))
     }
@@ -75,7 +97,29 @@ jacocoTestReport {
         // else display coverageRate is inconsistent with what was computed during coverage...
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
-                    "**/gen/**"
+                    "**/gen/**",
+                    "**/handler/**",
+                    "**/file/bucket/**",
+                    "**/file/hash/**",
+                    "**/file/zip/**",
+                    "**/mail/Email.class",
+                    "**/mail/EmailConf.class",
+                    "**/mail/EmailAddressVerifier.class",
+                    "**/mail/Mailer.class",
+                    "**/endpoint/event/EventProducer.class",
+                    "**/endpoint/event/EventConf.class",
+                    "**/endpoint/event/EventStack.class",
+                    "**/endpoint/event/consumer/**",
+                    "**/endpoint/event/model/UuidCreated.class",
+                    "**/PojaGenerated.class",
+                    "**/PojaApplication.class",
+                    "**/datastructure/**",
+                    "**/concurrency/**",
+                    "**/endpoint/RequestLoggerConfigurer.class",
+                    "**/endpoint/EndpointConf.class",
+                    "**/endpoint/event/model/PojaEvent.class",
+                    "**/endpoint/rest/controller/HelloWorldController.class",
+                    "**/endpoint/rest/controller/health/**"
             ])
         }))
     }

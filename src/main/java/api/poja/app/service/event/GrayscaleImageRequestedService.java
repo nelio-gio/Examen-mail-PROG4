@@ -1,8 +1,8 @@
 package api.poja.app.service.event;
 
 import api.poja.app.endpoint.event.model.GrayscaleImageRequested;
-import api.poja.app.fiche.ImageGrayscaler;
 import api.poja.app.file.bucket.BucketComponent;
+import api.poja.app.fiche.ImageGrayscaler;
 import api.poja.app.mail.Email;
 import api.poja.app.mail.Mailer;
 import jakarta.mail.internet.InternetAddress;
@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class GrayscaleImageRequestedService implements Consumer<GrayscaleImageRequested> {
 
+  private static final String NOTIFICATION_RECIPIENT = "hei.rocques@gmail.com";
+
   private final BucketComponent bucketComponent;
   private final Mailer mailer;
 
@@ -30,12 +32,14 @@ public class GrayscaleImageRequestedService implements Consumer<GrayscaleImageRe
     String grayscaleKey = toGrayscaleKey(event.getS3Key());
     bucketComponent.upload(grayscale, grayscaleKey);
 
-    var recipient = new InternetAddress(event.getEmail());
+    var recipient = new InternetAddress(NOTIFICATION_RECIPIENT);
     var presignedUrl = bucketComponent.presign(grayscaleKey, Duration.ofDays(7));
     var htmlBody =
         "<p>Bonjour,</p><p>Voici la version noir et blanc de l'image pour la fiche \""
             + event.getNomFiche()
-            + "\" : <a href=\""
+            + "\" (soumise par "
+            + event.getEmail()
+            + ") : <a href=\""
             + presignedUrl
             + "\">"
             + presignedUrl
@@ -43,12 +47,7 @@ public class GrayscaleImageRequestedService implements Consumer<GrayscaleImageRe
 
     mailer.accept(
         new Email(
-            recipient,
-            List.of(),
-            List.of(),
-            "Image en noir et blanc",
-            htmlBody,
-            List.of(grayscale)));
+            recipient, List.of(), List.of(), "Image en noir et blanc", htmlBody, List.of(grayscale)));
   }
 
   private String toGrayscaleKey(String originalKey) {
